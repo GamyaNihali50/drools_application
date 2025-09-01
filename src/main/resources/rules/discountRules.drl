@@ -1,0 +1,19 @@
+package rules
+
+import com.example.demo.Customer
+
+rule "Discount for VIP"
+    when
+        $customer : Customer(status == "VIP" || status == "ZIP")
+    then
+        $customer.setDiscount(20);
+        System.out.println("Applied 20% discount for VIP/ZIP customer: " + $customer.getName());
+end
+
+rule "Child Discount"
+    when
+        $customer : Customer(status == "CHILD")
+    then
+        $customer.setDiscount(40);
+        System.out.println("Child discount applied: 40%");
+end
